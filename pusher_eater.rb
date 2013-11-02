@@ -1,3 +1,5 @@
+require 'logger'
+
 class PusherEater
 
   def initialize(app_id, channel, light_switch)
@@ -26,10 +28,6 @@ class PusherEater
   def get_param_from_message(message, param)
     message.split(" ").find{|e| e.include?("#{param}=") }.split("=").last
   end
-
-
-  
-
 
 
 end

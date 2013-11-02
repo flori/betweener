@@ -4,37 +4,38 @@ class LightSwitch
     @s = SerialPort.new(serial_port, baudrate: 9600)
   end
 
-  def switch(controller, action)
-    light = get_light_for(controller, action)
-    blink_light(light) if light
+  def switch(controller, action)   
+    led = get_led_for(controller, action)
+    blink_led(led.first, led.last) if led
   end
 
-  def blink_light(light)
-    @s.write("d#{light}8\n")
+  def blink_led(digit, led)
+    @s.write("l#{digit}#{led}1\n")
     sleep(0.5)
-    @s.write("d#{light}x\n")
+    @s.write("l#{digit}#{led}0\n")
   end
 
-  def get_light_for(controller, action)
-    lights = [
-      ["home",             "index"],
-      ["donations",        "create"],
-      ["iframe_donations", "create"],
-      ["manage/elements",  "create"],
-      ["projects",         "create"],
-      ["pictures",         "create"],
-      ["payouts",          "create"],
-      ["manage/blogs",     "create"]
+  def get_led_for(controller, action)
+    key = controller + "." + action
+    leds ={
+      "manage/blogs.create"        => [0,0],
+      "home.index"                 => [0,4],
+      "donations.create"           => [0,5],
+      "manage/elements.create"     => [1,0],
+      "pictures.create"            => [1,4],
+      "projects.create"            => [1,5],
+      "iframe_donations.create"    => [2,0],
+      "payouts.create"             => [2,4],
+      "users/registrations.create" => [2,5],
+    }
 
-      # ["users/registrations",     "create"]
-      # ["users/sessions",          "create"]
-      # ["messages",     "create"]   
-      # ["manage/blog_newsletters",     "create"]
-      # ["organisations",     "update"]
-      # ["projects",     "update"]
-       
-    ]
-    lights.index [controller, action]
+    # ["users/registrations",     "create"]
+    # ["users/sessions",          "create"]
+    # ["messages",     "create"]   
+    # ["manage/blog_newsletters",     "create"]
+    # ["organisations",     "update"]
+    # ["projects",     "update"]
+    leds[key]
   end
 
   def close
