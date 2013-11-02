@@ -1,31 +1,25 @@
 require 'rubygems'
 require 'pusher-client'
 require 'serialport'
+require 'rufus-scheduler'
 require_relative "light_switcher"
+require_relative "pusher_eater"
 
 light_switch = LightSwitch.new("/dev/ttyACM0")
 
-PusherClient.logger = Logger.new('/dev/null')
-socket = PusherClient::Socket.new("ec3923c4e38951e7f7c7")
-socket.connect(true) # Connect asynchronously
-
-socket.subscribe('site_events')
-
-def get_param_from_message(message, param)
-  message.split(" ").find{|e| e.include?("#{param}=") }.split("=").last
-end
+light_switch.blink_light(1)
+light_switch.blink_light(6)
+pusher = PusherEater.new("ec3923c4e38951e7f7c7", 'site_events', light_switch)
 
 
-socket.bind('event') do |data|
-  #puts data
-  
-  controller = get_param_from_message(data, "controller")
-  action     = get_param_from_message(data, "action")
 
-  puts "controller: #{controller}, action: #{action} "
+#scheduler = Rufus::Scheduler.new
 
-  light_switch.switch(controller, action)
-end
+#scheduler.every '5s' do
+#  light_switch.blink_light(7)
+#end
+
+#scheduler.join
 
 loop do
   sleep(1) # Keep your main thread running

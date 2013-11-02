@@ -6,12 +6,13 @@ class LightSwitch
 
   def switch(controller, action)
     light = get_light_for(controller, action)
-    if light
-      string = make_number_string_for_light(light)
-      @s.write(string)
-      sleep(0.5)
-      @s.write("xxxxxxxx\r\n")
-    end
+    blink_light(light) if light
+  end
+
+  def blink_light(light)
+    @s.write("d#{light}8\n")
+    sleep(0.5)
+    @s.write("d#{light}x\n")
   end
 
   def get_light_for(controller, action)
@@ -29,15 +30,19 @@ class LightSwitch
       # ["users/sessions",          "create"]
       # ["messages",     "create"]   
       # ["manage/blog_newsletters",     "create"]
+      # ["organisations",     "update"]
+      # ["projects",     "update"]
        
     ]
     lights.index [controller, action]
   end
 
-  def make_number_string_for_light(index)
-    str = "xxxxxxxx\r\n"
-    str[index] = "8"
-    str
+  def close
+    @s.close
+  end
+
+  def serial_port
+    @s
   end
 
 end
