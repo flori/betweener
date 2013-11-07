@@ -11,12 +11,13 @@ class PusherEater
 
     socket.bind('event') do |data|
       #print data
-      
+
       controller = get_param_from_message(data, "controller")
       action     = get_param_from_message(data, "action")
 
-      puts "controller: #{controller}, action: #{action} "
-
+      # unless action == "show" || action == "index"
+      #   puts "controller: #{controller}, action: #{action} "
+      # end
       light_switch.switch(controller, action)
     end
 

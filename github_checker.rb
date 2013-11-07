@@ -10,7 +10,7 @@ class GithubChecker
     scheduler.every '5s' do
       if git_data.new_activity?(github_repo)
         puts "new commit"
-        light_switch.blink_led(2,5)
+        light_switch.blink_led(6,1,3)
       end
     end
   end

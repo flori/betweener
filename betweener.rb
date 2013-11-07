@@ -21,6 +21,10 @@ pusher = PusherEater.new("ec3923c4e38951e7f7c7", 'site_events', light_switch)
 github_checker = GithubChecker.new("0623d1ac65f8d608c1c0412f50031388eaa070d9", 'betterplace/betterplace', light_switch, scheduler)
 
 
+scheduler.every("10m") do
+  puts "-----"
+end
+
 scheduler.join
 loop do
   sleep(1) # Keep your main thread running
