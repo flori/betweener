@@ -80,7 +80,7 @@ class LightSwitch
       "opinions.create"            => [6,5,3],
       "donation_opinions.update"   => [6,5,3],
 
-      "project_pages.update"       => [6,6,3],
+      "projects.update"       => [6,6,3],
       "manage/project_bank_accounts.update"              => [6,6,3],
       "manage/project_carriers.update"                   => [6,6,3],
       "manage/translations/project_translations.update"  => [6,6,3],
