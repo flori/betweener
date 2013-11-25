@@ -16,7 +16,7 @@ scheduler = Rufus::Scheduler.new
 
 light_switch = LightSwitch.new("/dev/ttyACM0", scheduler)
 #byebug
-pusher = PusherEater.new("ec3923c4e38951e7f7c7", 'site_events', light_switch)
+pusher = PusherEater.new("b815ed0de24f2d5ab7ea", 'site_events', light_switch)
 
 github_checker = GithubChecker.new("0623d1ac65f8d608c1c0412f50031388eaa070d9", 'betterplace/betterplace', light_switch, scheduler)
 
