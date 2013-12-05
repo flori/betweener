@@ -59,7 +59,6 @@ class LightSwitch
       "users/sessions.create"      => [7,1,3],
       "users/registrations.create" => [7,4,3],
       "manage/needs.create"        => [7,5,3],
-      "users/registrations.create" => [7,2,3],
       "manage/blogs.create"        => [7,3,3],
       "messages.create"                    => [7,6,3],
       "bettertime/contact_messages.create" => [7,6,3],
