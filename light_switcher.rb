@@ -34,74 +34,58 @@ class LightSwitch
   def get_led_for(controller, action)
     key = controller + "." + action
     leds ={
-      # "users/sessions.create"      => [0,0,3],
-      # "users/registrations.create" => [0,4,3],
-      # "manage/needs.create"        => [0,5,3],
+      "users/sessions.create"      => [0,6,3],
+      "users/registrations.create" => [6,6,3],
+      "manage/needs.create"        => [6,1,3],
+      "manage/blogs.create"        => [3,7,3],
+      "messages.create"                    => [2,7,3],
+      "bettertime/contact_messages.create" => [2,7,3],
 
-      # "donations.create"           => [1,0,3],
-      # "api/donations.create"       => [1,0,3],
-      # "iframe_donations.create"    => [1,0,3],
-      # "client_donations.create"    => [1,0,3],
-      # "mobile_donations.create"    => [1,0,3],
+      "collective_donations.create"=> [3,1,3],
 
-      # "pictures.create"            => [1,4,3],
-      # "projects.create"            => [1,5,3],
+      "donations.create"           => [3,6,3],
+      "api/donations.create"       => [3,6,3],
+      "iframe_donations.create"    => [3,6,3],
+      "client_donations.create"    => [3,6,3],
+      "mobile_donations.create"    => [3,6,3],
 
-      # "manage/payouts.create"      => [2,0,3],
+      "pictures.create"            => [2,2,3],
+      "projects.create"            => [2,1,3],
 
-      # "project_pages.update"       => [2,4,3],
-      # "manage/project_bank_accounts.update"              => [2,4,3],
-      # "manage/project_carriers.update"                   => [2,4,3],
-      # "manage/translations/project_translations.update"  => [2,4,3],
-      # "manage/needs.update"                              => [2,4,3],
+      "manage/payouts.create"      => [4,1,3],
+
+      "opinions.create"            => [4,6,3],
+      "donation_opinions.update"   => [4,6,3],
+
+      "comments.create"            => [6,7,3],
+      "questions.create"           => [0,2,3],
+
+      "projects.update"                                  => [0,1,3],
+      "manage/project_bank_accounts.update"              => [0,1,3],
+      "manage/project_carriers.update"                   => [0,1,3],
+      "manage/translations/project_translations.update"  => [0,1,3],
+      "manage/needs.update"                              => [0,1,3],
+
+      "group_registrations.create"     => [6,2,3],
+      "groups.update"                  => [3,2,3],
+      "organisations.create"                                  => [7,7,3],
+      "organisations.update"                                  => [4,7,3],
+      "manage/translations/organisation_translations.update"  => [4,7,3],
+      "bettertime/job_descriptions.create"                    => [4,2,3],
+      "manage/blog_newsletters.create"                        => [0,7,3],
+
+      "project_pages.show"         => [7,1,0.5],
+      "groups.show"                => [3,2,0.5],
+      "home.index"                 => [7,6,0.5],
 
 
-      "users/sessions.create"      => [7,1,3],
-      "users/registrations.create" => [7,4,3],
-      "manage/needs.create"        => [7,5,3],
-      "manage/blogs.create"        => [7,3,3],
-      "messages.create"                    => [7,6,3],
-      "bettertime/contact_messages.create" => [7,6,3],
-
-      "collective_donations.create"=> [7,7,3],
-
-      "donations.create"           => [6,1,3],
-      "api/donations.create"       => [6,1,3],
-      "iframe_donations.create"    => [6,1,3],
-      "client_donations.create"    => [6,1,3],
-      "mobile_donations.create"    => [6,1,3],
-
-      "pictures.create"            => [6,2,3],
-      "projects.create"            => [6,3,3],
-
-      "manage/payouts.create"      => [6,4,3],
-
-      "opinions.create"            => [6,5,3],
-      "donation_opinions.update"   => [6,5,3],
-
-      "projects.update"       => [6,6,3],
-      "manage/project_bank_accounts.update"              => [6,6,3],
-      "manage/project_carriers.update"                   => [6,6,3],
-      "manage/translations/project_translations.update"  => [6,6,3],
-      "manage/needs.update"                              => [6,6,3],
-
-      "group_registrations.create"     => [7,1,3],
-      "groups.update"                  => [7,2,3],
-      "organisations.create"                                  => [7,3,3],
-      "organisations.update"                                  => [7,4,3],
-      "manage/translations/organisation_translations.update"  => [7,5,3],
-      "bettertime/job_descriptions.create"                    => [7,6,3],
-      "manage/blog_newsletters.create"                        => [7,7,3],
-
-      "project_pages.show"         => [1,4,0.5],
-      "groups.show"                => [0,4,0.5],
-      "home.index"                 => [0,0,0.5],
     }
 
-    # donation_comments.create
     # comments.create  # I think blogs, opinion
     # questions.create
 
+
+#code updated => 2,6
 
     leds[key]
   end
