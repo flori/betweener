@@ -2,14 +2,29 @@ require 'logger'
 
 class PusherEater
 
-  def initialize(app_id, channel, light_switch)
+  def initialize(app_id, channel)
+    @app_id = app_id
+    @channel = channel
+
     PusherClient.logger = Logger.new('/dev/null')
-    socket = PusherClient::Socket.new(app_id)
-    socket.connect(true) # Connect asynchronously
+    connect
 
-    socket.subscribe(channel)
+    $scheduler.every("20m") do
+      reconnect
+    end
 
-    socket.bind('event') do |data|
+  end
+
+  def get_param_from_message(message, param)
+    message.split(" ").find{|e| e.include?("#{param}=") }.split("=").last
+  end
+
+  def connect
+    @socket = PusherClient::Socket.new(@app_id)
+    @socket.connect(true) # Connect asynchronously
+    @socket.subscribe(@channel)
+
+    @socket.bind('event') do |data|
       #print data
 
       controller = get_param_from_message(data, "controller")
@@ -18,16 +33,14 @@ class PusherEater
       # unless action == "show" || action == "index"
       #   puts "controller: #{controller}, action: #{action} "
       # end
-      light_switch.switch(controller, action)
+      $light_switch.switch(controller, action)
     end
-
-    light_switch.switch("home", "index")
-    light_switch.switch("pictures","create")
-
   end
 
-  def get_param_from_message(message, param)
-    message.split(" ").find{|e| e.include?("#{param}=") }.split("=").last
+  def reconnect
+    puts "reconnecting to pusher to keep alive"
+    @socket.disconnect
+    connect
   end
 
 
