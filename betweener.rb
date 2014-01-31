@@ -8,11 +8,12 @@ require 'byebug'
 
 require_relative "light_switcher"
 require_relative "pusher_eater"
+require_relative "config"
 
 
 $scheduler = Rufus::Scheduler.new
 $light_switch = LightSwitch.new
-pusher = PusherEater.new("b815ed0de24f2d5ab7ea", 'site_events')
+pusher = PusherEater.new($pusher_key, 'site_events')
 
 $scheduler.every("10m") do
   puts "-----"
