@@ -7,8 +7,10 @@ class LightSwitch
   def initialize
     connect
 
-    $scheduler.every("10s") do
-      check_connection
+    if $scheduler
+      $scheduler.every("10s") do
+        check_connection
+      end
     end
   end
 
@@ -72,9 +74,8 @@ class LightSwitch
     puts "Couldn't write to arduino port- is the dashboard plugged in?"
   end
 
-  def get_led_for(controller, action)
-    key = controller + "." + action
-    leds ={
+  def led_matrix
+    {
       "users/sessions.create"      => [0,6,4],
       "users/registrations.create" => [6,6,4],
       "manage/needs.create"        => [6,1,4],
@@ -98,7 +99,7 @@ class LightSwitch
       "opinions.create"            => [4,6,4],
       "donation_opinions.update"   => [4,6,4],
 
-      "comments.create"            => [6,7,4],
+      "comments.create"            => [2,6,4],
       "questions.create"           => [0,2,4],
 
       "projects.update"                                  => [0,1,4],
@@ -109,27 +110,18 @@ class LightSwitch
       "manage/external_donations"                        => [0,1,4],
 
       "group_registrations.create"     => [6,2,4],
-      "groups.update"                  => [3,2,4],
+      "groups.update"                  => [7,2,4],
       "organisations.create"                                  => [7,7,4],
       "organisations.update"                                  => [4,7,4],
       "manage/translations/organisation_translations.update"  => [4,7,4],
       "bettertime/job_descriptions.create"                    => [4,2,4],
       "manage/blog_newsletters.create"                        => [0,7,4],
-
-      # "project_pages.show"         => [7,1,0.5],
-      # "groups.show"                => [3,2,0.5],
-      # "home.index"                 => [7,6,0.5],
-
-
     }
+  end
 
-    # comments.create  # I think blogs, opinion
-    # questions.create
-
-
-#code updated => 2,6
-
-    leds[key]
+  def get_led_for(controller, action)
+    key = controller + "." + action
+    led_matrix[key]
   end
 
   def test_lights

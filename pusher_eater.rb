@@ -8,11 +8,6 @@ class PusherEater
 
     PusherClient.logger = Logger.new('/dev/null')
     connect
-
-    $scheduler.every("20m") do
-      reconnect
-    end
-
   end
 
   def get_param_from_message(message, param)
@@ -25,14 +20,10 @@ class PusherEater
     @socket.subscribe(@channel)
 
     @socket.bind('event') do |data|
-      #print data
 
       controller = get_param_from_message(data, "controller")
       action     = get_param_from_message(data, "action")
 
-      # unless action == "show" || action == "index"
-      #   puts "controller: #{controller}, action: #{action} "
-      # end
       $light_switch.switch(controller, action)
     end
   end
