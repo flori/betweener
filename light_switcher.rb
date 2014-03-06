@@ -129,6 +129,12 @@ class LightSwitch
     light_switch.switch("pictures","create")
   end
 
+  def switch_all_off
+    led_matrix.each do |action, led|
+      set_led(led[0],led[1], false)
+    end
+  end
+
 
   def close
     @s.close
