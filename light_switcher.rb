@@ -86,6 +86,7 @@ class LightSwitch
       "collective_donations.create"=> [3,1,4],
 
       "donations.create"           => [3,6,4],
+      "platform_donations.create"  => [3,6,4],
       "api/donations.create"       => [3,6,4],
       "iframe_donations.create"    => [3,6,4],
       "client_donations.create"    => [3,6,4],
