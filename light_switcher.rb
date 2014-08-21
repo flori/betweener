@@ -93,6 +93,7 @@ class LightSwitch
       "mobile_donations.create"    => [3,6,4],
 
       "pictures.create"            => [2,2,4],
+      "profile_pictures.create"    => [2,2,4],
       "projects.create"            => [2,1,4],
 
       "manage/payouts.create"      => [4,1,4],

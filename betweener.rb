@@ -13,7 +13,7 @@ require_relative "config"
 
 $scheduler = Rufus::Scheduler.new
 $light_switch = LightSwitch.new
-pusher = PusherEater.new($pusher_key, 'site_events')
+pusher = PusherEater.new($pusher_key, 'page-hits-production')
 
 $scheduler.every("10m") do
   puts "-----"

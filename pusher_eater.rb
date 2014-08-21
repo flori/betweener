@@ -1,4 +1,5 @@
 require 'logger'
+require 'json'
 
 class PusherEater
 
@@ -10,21 +11,19 @@ class PusherEater
     connect
   end
 
-  def get_param_from_message(message, param)
-    message.split(" ").find{|e| e.include?("#{param}=") }.split("=").last
-  end
-
   def connect
     @socket = PusherClient::Socket.new(@app_id)
     @socket.connect(true) # Connect asynchronously
     @socket.subscribe(@channel)
 
-    @socket.bind('event') do |data|
+    @socket.bind('page_hit') do |data|
 
-      controller = get_param_from_message(data, "controller")
-      action     = get_param_from_message(data, "action")
+      json = JSON.parse(data)
 
-      $light_switch.switch(controller, action)
+      puts json["controller"]
+      puts json["action"]
+      
+      $light_switch.switch(json["controller"], json["action"])
     end
   end
 
