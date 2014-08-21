@@ -6,11 +6,6 @@ GEM
       multi_json (~> 1.0)
     addressable (2.3.5)
     atomic (1.1.14)
-    byebug (2.1.1)
-      columnize (~> 0.3.6)
-      debugger-linecache (~> 1.2.0)
-    columnize (0.3.6)
-    debugger-linecache (1.2.0)
     faraday (0.8.8)
       multipart-post (~> 1.2.0)
     faraday-http-cache (0.3.0)
@@ -41,7 +36,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  byebug
   faraday-http-cache
   git
   octokit
