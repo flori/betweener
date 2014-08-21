@@ -4,7 +4,6 @@ require 'bundler/setup'
 require 'pusher-client'
 require 'serialport'
 require 'rufus-scheduler'
-require 'byebug'
 
 require_relative "light_switcher"
 require_relative "pusher_eater"
