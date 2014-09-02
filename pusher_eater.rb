@@ -20,8 +20,8 @@ class PusherEater
 
       json = JSON.parse(data)
 
-      puts json["controller"]
-      puts json["action"]
+      # puts json["controller"]
+      # puts json["action"]
       
       $light_switch.switch(json["controller"], json["action"])
     end

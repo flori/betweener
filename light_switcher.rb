@@ -77,9 +77,13 @@ class LightSwitch
   def led_matrix
     {
       "users/sessions.create"      => [0,6,4],
+      "sessions.create"            => [0,6,4],
       "users/registrations.create" => [6,6,4],
+      "registrations.create"       => [6,6,4],
       "manage/needs.create"        => [6,1,4],
+      "needs.create"               => [6,1,4],
       "manage/blogs.create"        => [3,7,4],
+      "blogs.create"               => [3,7,4],
       "messages.create"                    => [2,7,4],
       "bettertime/contact_messages.create" => [2,7,4],
 
@@ -93,6 +97,7 @@ class LightSwitch
       "mobile_donations.create"    => [3,6,4],
 
       "pictures.create"            => [2,2,4],
+      "project_images.create"      => [2,2,4],
       "profile_pictures.create"    => [2,2,4],
       "projects.create"            => [2,1,4],
 
@@ -106,18 +111,27 @@ class LightSwitch
 
       "projects.update"                                  => [0,1,4],
       "manage/project_bank_accounts.update"              => [0,1,4],
+      "project_bank_accounts.update"                     => [0,1,4],
       "manage/project_carriers.update"                   => [0,1,4],
+      "project_carriers.update"                          => [0,1,4],
       "manage/translations/project_translations.update"  => [0,1,4],
+      "project_translations.update"                      => [0,1,4],
       "manage/needs.update"                              => [0,1,4],
+      "needs.update"                                     => [0,1,4],
+      "locations.update"                                 => [0,1,4],
       "manage/external_donations"                        => [0,1,4],
+      "external_donations"                               => [0,1,4],
+      "project_map_markers.create"                       => [0,1,4],
 
       "group_registrations.create"     => [6,2,4],
       "groups.update"                  => [7,2,4],
       "organisations.create"                                  => [7,7,4],
       "organisations.update"                                  => [4,7,4],
       "manage/translations/organisation_translations.update"  => [4,7,4],
+      "translations/organisation_translations.update"         => [4,7,4],
       "bettertime/job_descriptions.create"                    => [4,2,4],
       "manage/blog_newsletters.create"                        => [0,7,4],
+      "blog_newsletters.create"                               => [0,7,4],
     }
   end
 
