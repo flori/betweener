@@ -1,7 +1,7 @@
 class LightSwitch
 
   def serial_ports
-    ["/dev/ttyUSB0", "/dev/ttyUSB1", "/dev/ttyACM0"]
+    (["/dev/ttyUSB0", "/dev/ttyUSB1", "/dev/ttyACM0"] << ENV['SERIAL']).compact
   end
 
   def initialize
@@ -26,16 +26,16 @@ class LightSwitch
   end
 
   def check_connection
-    connect unless connected?  
+    connect unless connected?
   end
 
 
   def connected?
-    if @s.nil? 
+    if @s.nil?
       return false
     end
 
-    @s.write("test!\n") 
+    @s.write("test!\n")
   rescue Errno::EIO
     return false
   else
@@ -67,7 +67,7 @@ class LightSwitch
     if @s
       val_str = value ?  "1" : "0"
       @s.write("l#{digit}#{led}#{val_str}\n")
-    else 
+    else
       puts "Couldn't write to arduino port- is the dashboard plugged in?"
     end
   rescue  Errno::EIO

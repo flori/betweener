@@ -22,7 +22,3 @@ $scheduler.join
 loop do
   sleep(1) # Keep your main thread running
 end
-
-
-
-

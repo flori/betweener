@@ -22,7 +22,7 @@ class PusherEater
 
       # puts json["controller"]
       # puts json["action"]
-      
+
       $light_switch.switch(json["controller"], json["action"])
     end
   end
@@ -32,6 +32,4 @@ class PusherEater
     @socket.disconnect
     connect
   end
-
-
 end
